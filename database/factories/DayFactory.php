@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Datomatic\DatabaseOpeningHours\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 use Datomatic\DatabaseOpeningHours\Enums;
 use Datomatic\DatabaseOpeningHours\Models\Day;
+use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 final class DayFactory extends Factory
 {
