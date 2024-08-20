@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Datomatic\DatabaseOpeningHours\Database\Factories;
 
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Datomatic\DatabaseOpeningHours\Models\OpeningHour;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 final class OpeningHourFactory extends Factory
 {
