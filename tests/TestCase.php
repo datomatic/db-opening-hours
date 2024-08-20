@@ -2,9 +2,9 @@
 
 namespace Datomatic\DatabaseOpeningHours\Tests;
 
+use Datomatic\DatabaseOpeningHours\DatabaseOpeningHoursServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Datomatic\DatabaseOpeningHours\DatabaseOpeningHoursServiceProvider;
 
 class TestCase extends Orchestra
 {

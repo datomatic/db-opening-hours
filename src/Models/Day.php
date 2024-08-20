@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Datomatic\DatabaseOpeningHours\Models;
 
+use Datomatic\DatabaseOpeningHours\Enums\Day as DayEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
-use Datomatic\DatabaseOpeningHours\Enums\Day as DayEnum;
 
 /**
  * @property Enums\Day $day
