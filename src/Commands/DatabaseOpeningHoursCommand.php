@@ -1,12 +1,12 @@
 <?php
 
-namespace VendorName\Skeleton\Commands;
+namespace Datomatic\DatabaseOpeningHours\Commands;
 
 use Illuminate\Console\Command;
 
-class SkeletonCommand extends Command
+class DatabaseOpeningHoursCommand extends Command
 {
-    public $signature = 'skeleton';
+    public $signature = 'db-opening-hours';
 
     public $description = 'My command';
 
