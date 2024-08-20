@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Maartenpaauw\Filament\OpeningHours\Database\Factories;
+namespace Datomatic\DatabaseOpeningHours\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Maartenpaauw\Filament\OpeningHours\Models\TimeRange;
+use Datomatic\DatabaseOpeningHours\Models\TimeRange;
 
 final class TimeRangeFactory extends Factory
 {

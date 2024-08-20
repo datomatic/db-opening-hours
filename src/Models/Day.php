@@ -10,7 +10,7 @@ use Illuminate\Support\Collection;
 use Datomatic\DatabaseOpeningHours\Enums\Day as DayEnum;
 
 /**
- * @property Enums\Day $day
+ * @property DayEnum $day
  * @property string $description
  * @property Collection<array-key, TimeRange> $timeRanges
  */

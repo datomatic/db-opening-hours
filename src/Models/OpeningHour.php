@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
-use Maartenpaauw\Filament\OpeningHours\Enums;
+use Datomatic\DatabaseOpeningHours\Enums;
 use Spatie\OpeningHours\OpeningHours;
 
 final class OpeningHour extends Model
@@ -85,10 +85,10 @@ final class OpeningHour extends Model
     public function openingHours(): OpeningHours
     {
         return OpeningHours::create(
-            $this->days()
+            $this->days() // @phpstan-ignore-line
                 ->get()
                 ->mapWithKeys(static fn (Day $day): array => [
-                    $day->day->toString() => array_filter([
+                    $day->day->value => array_filter([
                         'data' => $day->description,
                         'hours' => $day->timeRanges
                             ->map(static fn (TimeRange $timeRange): array => array_filter([

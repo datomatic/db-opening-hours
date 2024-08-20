@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Maartenpaauw\Filament\OpeningHours\Database\Factories;
+namespace Datomatic\DatabaseOpeningHours\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
-use Maartenpaauw\Filament\OpeningHours\Enums;
-use Maartenpaauw\Filament\OpeningHours\Models\Day;
+use Datomatic\DatabaseOpeningHours\Enums;
+use Datomatic\DatabaseOpeningHours\Models\Day;
 
 final class DayFactory extends Factory
 {
