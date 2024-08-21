@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
+use Datomatic\DatabaseOpeningHours\Enums\Day;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Datomatic\DatabaseOpeningHours\Enums\Day;
 
 return new class extends Migration
 {
