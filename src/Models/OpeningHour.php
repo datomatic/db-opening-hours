@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Datomatic\DatabaseOpeningHours\Models;
 
+use Carbon\Carbon;
+use DateTimeInterface;
 use Datomatic\DatabaseOpeningHours\Enums;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +14,15 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\OpeningHours\OpeningHours;
 
+
+/**
+ * @property int $int
+ * @property ?string $name
+ * @property string $openable_type
+ * @property int $openable_id
+ *
+ * @method static \Illuminate\Database\Eloquent\Builder|static openAt(string|DateTimeInterface $date)
+ */
 final class OpeningHour extends Model
 {
     protected $table = 'opening_hours';
@@ -86,6 +97,24 @@ final class OpeningHour extends Model
     public function openable(): MorphTo
     {
         return $this->morphTo();
+    }
+
+    function scopeOpenAt(Builder $query, Carbon $date): void
+    {
+        $query->whereHas('exceptions', function (Builder $query) use ($date): void
+        {
+            /** @var Builder<Exception> $query */
+            $query->openAt($date);
+        })
+            ->orWhere(function (Builder $query) use ($date): void {
+                $query->whereDoesntHave('exceptions', function (Builder $query) use ($date): void {
+                    $query->whereDate('date', $date);
+                })->whereHas('days', function (Builder $query) use ($date): void
+                {
+                    /** @var  Builder<Day> $query */
+                    $query->openAt($date);
+                });
+            });
     }
 
     public function openingHours(): OpeningHours
