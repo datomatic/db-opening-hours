@@ -13,7 +13,7 @@ return new class extends Migration
         Schema::create('opening_hours', static function (Blueprint $table): void {
             $table->id();
             $table->nullableMorphs('openable');
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }
