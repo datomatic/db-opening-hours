@@ -2,6 +2,9 @@
 
 namespace Datomatic\DatabaseOpeningHours;
 
+use Datomatic\DatabaseOpeningHours\Models\Day;
+use Datomatic\DatabaseOpeningHours\Models\Exception;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -25,5 +28,13 @@ class DatabaseOpeningHoursServiceProvider extends PackageServiceProvider
                 '100003_create_opening_hours_time_ranges_table',
             ])
             ->runsMigrations();
+    }
+
+    public function packageRegistered(): void
+    {
+        Relation::morphMap([
+            'day' => Day::class,
+            'exception' => Exception::class,
+        ]);
     }
 }
