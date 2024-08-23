@@ -35,37 +35,37 @@ final class OpeningHour extends Model
 
     public function monday(): HasOne
     {
-        return $this->day(Enums\Day::Monday);
+        return $this->day(Enums\Day::MONDAY);
     }
 
     public function tuesday(): HasOne
     {
-        return $this->day(Enums\Day::Tuesday);
+        return $this->day(Enums\Day::TUESDAY);
     }
 
     public function wednesday(): HasOne
     {
-        return $this->day(Enums\Day::Wednesday);
+        return $this->day(Enums\Day::WEDNESDAY);
     }
 
     public function thursday(): HasOne
     {
-        return $this->day(Enums\Day::Thursday);
+        return $this->day(Enums\Day::THURSDAY);
     }
 
     public function friday(): HasOne
     {
-        return $this->day(Enums\Day::Friday);
+        return $this->day(Enums\Day::FRIDAY);
     }
 
     public function saturday(): HasOne
     {
-        return $this->day(Enums\Day::Saturday);
+        return $this->day(Enums\Day::SATURDAY);
     }
 
     public function sunday(): HasOne
     {
-        return $this->day(Enums\Day::Sunday);
+        return $this->day(Enums\Day::SUNDAY);
     }
 
     private function day(Enums\Day $day): HasOne

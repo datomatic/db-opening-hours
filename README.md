@@ -23,10 +23,9 @@ You can install the package via composer:
 composer require datomatic/db-opening-hours
 ```
 
-You can publish and run the migrations with:
+You can run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag="db-opening-hours-migrations"
 php artisan migrate
 ```
 
@@ -34,6 +33,12 @@ You can publish the config file with:
 
 ```bash
 php artisan vendor:publish --tag="db-opening-hours-config"
+```
+
+You can publish the translations files with:
+
+```bash
+php artisan vendor:publish --tag="db-opening-hours-translations"
 ```
 
 This is the contents of the published config file:

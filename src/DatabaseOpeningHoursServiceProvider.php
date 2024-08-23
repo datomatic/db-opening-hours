@@ -17,6 +17,7 @@ class DatabaseOpeningHoursServiceProvider extends PackageServiceProvider
         $package
             ->name('db-opening-hours')
             ->hasConfigFile()
+            ->hasTranslations()
             ->hasMigrations([
                 '100000_create_opening_hours_table',
                 '100001_create_opening_hours_days_table',
