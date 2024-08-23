@@ -16,7 +16,6 @@ use Illuminate\Support\Collection;
  * @property int $int
  * @property DayEnum $day
  * @property ?string $description
- *
  * @property-read Collection<array-key, TimeRange> $timeRanges
  *
  * @method static \Illuminate\Database\Eloquent\Builder|static openAt(string|DateTimeInterface $date)
@@ -43,11 +42,10 @@ final class Day extends Model
             ->orderBy('end');
     }
 
-    function scopeOpenAt(Builder $query, Carbon $date): void
+    public function scopeOpenAt(Builder $query, Carbon $date): void
     {
-        $query->where('day', DayEnum::from(strtolower($date->locale("en")->dayName)))
-            ->whereHas('timeRanges', function (Builder $query) use ($date): void
-            {
+        $query->where('day', DayEnum::from(strtolower($date->locale('en')->dayName)))
+            ->whereHas('timeRanges', function (Builder $query) use ($date): void {
                 /** @var Builder<TimeRange> $query */
                 $query->openAt($date);
             });

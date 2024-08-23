@@ -14,7 +14,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Spatie\OpeningHours\OpeningHours;
 
-
 /**
  * @property int $int
  * @property ?string $name
@@ -99,19 +98,17 @@ final class OpeningHour extends Model
         return $this->morphTo();
     }
 
-    function scopeOpenAt(Builder $query, Carbon $date): void
+    public function scopeOpenAt(Builder $query, Carbon $date): void
     {
-        $query->whereHas('exceptions', function (Builder $query) use ($date): void
-        {
+        $query->whereHas('exceptions', function (Builder $query) use ($date): void {
             /** @var Builder<Exception> $query */
             $query->openAt($date);
         })
             ->orWhere(function (Builder $query) use ($date): void {
                 $query->whereDoesntHave('exceptions', function (Builder $query) use ($date): void {
                     $query->whereDate('date', $date);
-                })->whereHas('days', function (Builder $query) use ($date): void
-                {
-                    /** @var  Builder<Day> $query */
+                })->whereHas('days', function (Builder $query) use ($date): void {
+                    /** @var Builder<Day> $query */
                     $query->openAt($date);
                 });
             });

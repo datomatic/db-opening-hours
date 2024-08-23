@@ -42,7 +42,7 @@ final class TimeRange extends Model
         });
     }
 
-    function scopeOpenAt(Builder $query, Carbon $date): void
+    public function scopeOpenAt(Builder $query, Carbon $date): void
     {
         $query->where('start', '<=', $date->toTimeString())
             ->where('end', '>=', $date->toTimeString());

@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
  */
 trait HasOpeningHours
 {
-    function scopeOpenAt(Builder $query, string|DateTimeInterface $date): void
+    public function scopeOpenAt(Builder $query, string|DateTimeInterface $date): void
     {
         if (! $date instanceof Carbon) {
             $date = Carbon::parse($date);
@@ -23,7 +23,7 @@ trait HasOpeningHours
         });
     }
 
-    function scopeCloseAt(Builder $query, string|DateTimeInterface $date): void
+    public function scopeCloseAt(Builder $query, string|DateTimeInterface $date): void
     {
         if (! $date instanceof Carbon) {
             $date = Carbon::parse($date);

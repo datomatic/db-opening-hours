@@ -16,7 +16,6 @@ use Illuminate\Support\Collection;
  * @property int $opening_hour_id
  * @property ?string $description
  * @property DateTimeInterface $date
- *
  * @property-read  Collection<array-key, TimeRange> $timeRanges
  *
  * @method static \Illuminate\Database\Eloquent\Builder|static openAt(string|DateTimeInterface $date)
@@ -42,11 +41,10 @@ final class Exception extends Model
             ->orderBy('end');
     }
 
-    function scopeOpenAt(Builder $query, Carbon $date): void
+    public function scopeOpenAt(Builder $query, Carbon $date): void
     {
         $query->whereDate('date', $date)
-            ->whereHas('timeRanges', function (Builder $query) use ($date): void
-            {
+            ->whereHas('timeRanges', function (Builder $query) use ($date): void {
                 /** @var Builder<TimeRange> $query */
                 $query->openAt($date);
             });
