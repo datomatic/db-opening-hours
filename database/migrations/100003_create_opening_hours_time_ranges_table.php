@@ -13,9 +13,9 @@ return new class extends Migration
         Schema::create('opening_hours_time_ranges', static function (Blueprint $table): void {
             $table->id();
 
-            $table->enum("time_rangeable_type",['day', 'exception']);
-            $table->unsignedBigInteger("time_rangeable_id");
-            $table->index(["time_rangeable_type", "time_rangeable_id"]);
+            $table->enum('time_rangeable_type', ['day', 'exception']);
+            $table->unsignedBigInteger('time_rangeable_id');
+            $table->index(['time_rangeable_type', 'time_rangeable_id']);
 
             $table->time('start');
             $table->time('end');
