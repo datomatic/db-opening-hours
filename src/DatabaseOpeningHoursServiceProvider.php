@@ -18,10 +18,10 @@ class DatabaseOpeningHoursServiceProvider extends PackageServiceProvider
             ->name('db-opening-hours')
             ->hasConfigFile()
             ->hasMigrations([
-                '2018_08_08_100000_create_opening_hours_table',
-                '2018_08_08_100001_create_opening_hours_days_table',
-                '2018_08_08_100002_create_opening_hours_exceptions_table',
-                '2018_08_08_100003_create_opening_hours_time_ranges_table',
+                '100000_create_opening_hours_table',
+                '100001_create_opening_hours_days_table',
+                '100002_create_opening_hours_exceptions_table',
+                '100003_create_opening_hours_time_ranges_table',
             ])
             ->runsMigrations();
     }
