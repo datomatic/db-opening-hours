@@ -15,7 +15,7 @@ return new class extends Migration
 
             $table->enum('time_rangeable_type', ['day', 'exception']);
             $table->unsignedBigInteger('time_rangeable_id');
-            $table->index(['time_rangeable_type', 'time_rangeable_id',], 'time_ranges_time_rangeable_type_time_rangeable_id_index');
+            $table->index(['time_rangeable_type', 'time_rangeable_id'], 'time_ranges_time_rangeable_type_time_rangeable_id_index');
 
             $table->time('start');
             $table->time('end');
