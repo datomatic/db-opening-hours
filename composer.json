@@ -22,16 +22,16 @@
         "illuminate/contracts": "^10.0||^11.0||^12.0||^13.0"
     },
     "require-dev": {
-        "larastan/larastan": "^3.0",
+        "larastan/larastan": "^2.9.8|^3.0",
         "laravel/pint": "^1.17.2",
         "nunomaduro/collision": "^8.4.0|^7.10.0",
         "orchestra/testbench": "^11.0|^10.0|^9.3.0|^8.22.0",
-        "pestphp/pest": "^4.5|^3.5",
-        "pestphp/pest-plugin-laravel": "^4.0 |^3.0",
+        "pestphp/pest": "^2.36|^3.5|^4.5",
+        "pestphp/pest-plugin-laravel": "^2.4|^3.0|^4.0",
         "phpstan/extension-installer": "^1.4.1",
-        "phpstan/phpstan-deprecation-rules": "^2.0",
-        "phpstan/phpstan-phpunit": "^2.0",
-        "rector/rector": "^2.5"
+        "phpstan/phpstan-deprecation-rules": "^1.2|^2.0",
+        "phpstan/phpstan-phpunit": "^1.4|^2.0",
+        "rector/rector": "^1.2|^2.5"
     },
     "autoload": {
         "psr-4": {
