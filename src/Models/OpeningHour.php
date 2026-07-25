@@ -49,7 +49,7 @@ class OpeningHour extends Model
     public function days(): HasMany
     {
         return $this->hasMany(Models::day())
-            ->orderBy('day');
+            ->orderByWeekday();
     }
 
     public function monday(): HasOne

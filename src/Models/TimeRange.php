@@ -32,12 +32,35 @@ class TimeRange extends Model
 
     protected $casts = [
         'id' => 'int',
-        'start' => 'datetime',
-        'end' => 'datetime',
         'description' => 'string',
     ];
 
     protected $appends = ['notation'];
+
+    /**
+     * Stored as a canonical `H:i:s` string so the time comparisons in the query
+     * scopes stay consistent across database engines, exposed as a Carbon.
+     *
+     * @return Attribute<Carbon, string>
+     */
+    protected function start(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (string $value): Carbon => Carbon::parse($value),
+            set: static fn (string|DateTimeInterface $value): string => TimeString::normalize($value),
+        );
+    }
+
+    /**
+     * @return Attribute<Carbon, string>
+     */
+    protected function end(): Attribute
+    {
+        return Attribute::make(
+            get: static fn (string $value): Carbon => Carbon::parse($value),
+            set: static fn (string|DateTimeInterface $value): string => TimeString::normalize($value),
+        );
+    }
 
     /**
      * @return Attribute<non-falsy-string, never>

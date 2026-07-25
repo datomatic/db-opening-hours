@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Illuminate\Support\Collection;
 
+use function sprintf;
 use function strtolower;
 
 /**
@@ -44,6 +45,20 @@ class Day extends Model
         return $this->morphMany(Models::timeRange(), 'time_rangeable')
             ->orderBy('start')
             ->orderBy('end');
+    }
+
+    /**
+     * Weekday order (Monday first) independent of the database engine, instead
+     * of relying on the alphabetical or enum-storage order of the `day` column.
+     */
+    public function scopeOrderByWeekday(Builder $query): void
+    {
+        $cases = '';
+        foreach (DayEnum::cases() as $index => $case) {
+            $cases .= sprintf("WHEN '%s' THEN %d ", $case->value, $index);
+        }
+
+        $query->orderByRaw('CASE day ' . $cases . 'END');
     }
 
     public function scopeOpenAt(Builder $query, Carbon $date): void
