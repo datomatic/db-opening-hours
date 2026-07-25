@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Datomatic\DatabaseOpeningHours\Tests;
 
 use Datomatic\DatabaseOpeningHours\DatabaseOpeningHoursServiceProvider;
@@ -13,7 +15,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Datomatic\\DatabaseOpeningHours\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName): string => 'Datomatic\\DatabaseOpeningHours\\Database\\Factories\\' . class_basename($modelName) . 'Factory'
         );
     }
 
@@ -24,7 +26,7 @@ class TestCase extends Orchestra
         ];
     }
 
-    public function getEnvironmentSetUp($app)
+    public function getEnvironmentSetUp($app): void
     {
         config()->set('database.default', 'testing');
 

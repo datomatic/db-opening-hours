@@ -8,6 +8,9 @@ use Datomatic\DatabaseOpeningHours\Models\TimeRange;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
+use function range;
+use function sprintf;
+
 final class TimeRangeFactory extends Factory
 {
     protected $model = TimeRange::class;

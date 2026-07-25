@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Datomatic\DatabaseOpeningHours;
 
-use Datomatic\DatabaseOpeningHours\Models\Day;
-use Datomatic\DatabaseOpeningHours\Models\Exception;
+use Datomatic\DatabaseOpeningHours\Support\Models;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -33,8 +34,8 @@ class DatabaseOpeningHoursServiceProvider extends PackageServiceProvider
     public function packageRegistered(): void
     {
         Relation::morphMap([
-            'day' => Day::class,
-            'exception' => Exception::class,
+            'day' => Models::day(),
+            'exception' => Models::exception(),
         ]);
     }
 }

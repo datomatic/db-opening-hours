@@ -6,6 +6,7 @@ namespace Datomatic\DatabaseOpeningHours\Models;
 
 use Carbon\Carbon;
 use DateTimeInterface;
+use Datomatic\DatabaseOpeningHours\Support\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -19,8 +20,9 @@ use Illuminate\Support\Collection;
  * @property-read  Collection<array-key, TimeRange> $timeRanges
  *
  * @method static \Illuminate\Database\Eloquent\Builder|static openAt(string|DateTimeInterface $date)
+ * @method static \Illuminate\Database\Eloquent\Builder|static covering(Carbon $date, string|DateTimeInterface $start, string|DateTimeInterface $end)
  */
-final class Exception extends Model
+class Exception extends Model
 {
     protected $table = 'opening_hours_exceptions';
 
@@ -36,7 +38,7 @@ final class Exception extends Model
 
     public function timeRanges(): MorphMany
     {
-        return $this->morphMany(TimeRange::class, 'time_rangeable')
+        return $this->morphMany(Models::timeRange(), 'time_rangeable')
             ->orderBy('start')
             ->orderBy('end');
     }
@@ -47,6 +49,18 @@ final class Exception extends Model
             ->whereHas('timeRanges', function (Builder $query) use ($date): void {
                 /** @var Builder<TimeRange> $query */
                 $query->openAt($date);
+            });
+    }
+
+    /**
+     * Date overrides whose ranges cover the whole `$start`-`$end` window.
+     */
+    public function scopeCovering(Builder $query, Carbon $date, string|DateTimeInterface $start, string|DateTimeInterface $end): void
+    {
+        $query->whereDate('date', $date)
+            ->whereHas('timeRanges', function (Builder $query) use ($start, $end): void {
+                /** @var Builder<TimeRange> $query */
+                $query->covering($start, $end);
             });
     }
 }

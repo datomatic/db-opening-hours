@@ -19,19 +19,19 @@
         "php": "^8.2",
         "spatie/opening-hours": "^4.0.0",
         "spatie/laravel-package-tools": "^1.16.4",
-        "illuminate/contracts": "^10.0||^11.0"
+        "illuminate/contracts": "^10.0||^11.0||^12.0||^13.0"
     },
     "require-dev": {
+        "larastan/larastan": "^3.0",
         "laravel/pint": "^1.17.2",
         "nunomaduro/collision": "^8.4.0||^7.10.0",
-        "larastan/larastan": "^2.9.8",
         "orchestra/testbench": "^9.3.0||^8.22.0",
-        "pestphp/pest": "^2.35",
-        "pestphp/pest-plugin-arch": "^2.7",
-        "pestphp/pest-plugin-laravel": "^2.4",
+        "pestphp/pest": "^3.5",
+        "pestphp/pest-plugin-laravel": "^3.0",
         "phpstan/extension-installer": "^1.4.1",
-        "phpstan/phpstan-deprecation-rules": "^1.2",
-        "phpstan/phpstan-phpunit": "^1.4"
+        "phpstan/phpstan-deprecation-rules": "^2.0",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "rector/rector": "^2.5"
     },
     "autoload": {
         "psr-4": {
@@ -58,7 +58,12 @@
             "@composer run build",
             "@php vendor/bin/testbench serve"
         ],
+        "rector": [
+            "./vendor/bin/rector"
+        ],
         "analyse": "vendor/bin/phpstan analyse",
+        "rector": "vendor/bin/rector process",
+        "rector-dry": "vendor/bin/rector process --dry-run",
         "test": "vendor/bin/pest",
         "test-coverage": "vendor/bin/pest --coverage",
         "format": "vendor/bin/pint"

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('opening_hours_days', static function (Blueprint $table): void {
             $table->id();
             $table->foreignId('opening_hour_id')->constrained();
-            $table->enum('day', array_column(Day::cases(), 'value'));
+            $table->enum('day', \array_column(Day::cases(), 'value'));
             $table->string('description')->nullable();
             $table->timestamps();
 
