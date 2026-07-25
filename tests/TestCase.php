@@ -13,6 +13,13 @@ class TestCase extends Orchestra
 {
     use RefreshDatabase;
 
+    /**
+     * Testbench < 10 resets this static property in its setUp() but only
+     * declares it on a trait a custom base test case bypasses, so a direct
+     * subclass must declare it to run under Pest 2 (Laravel 10/11).
+     */
+    public static $latestResponse;
+
     protected function setUp(): void
     {
         parent::setUp();

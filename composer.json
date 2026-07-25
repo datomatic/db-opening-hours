@@ -58,9 +58,6 @@
             "@composer run build",
             "@php vendor/bin/testbench serve"
         ],
-        "rector": [
-            "./vendor/bin/rector"
-        ],
         "analyse": "vendor/bin/phpstan analyse",
         "rector": "vendor/bin/rector process",
         "rector-dry": "vendor/bin/rector process --dry-run",
