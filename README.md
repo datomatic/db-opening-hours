@@ -189,15 +189,18 @@ Notes:
 
 ### Get a `spatie/opening-hours` object
 
-When you need the full [`spatie/opening-hours`](https://github.com/spatie/opening-hours) API, build it from the stored weekly schedule:
+When you need the full [`spatie/opening-hours`](https://github.com/spatie/opening-hours) API, build it from the stored schedule. Both the weekly days **and** the date exceptions are fed in, so the object's date-aware methods honour exceptions exactly like the `openAt`/`openBetween` query scopes:
 
 ```php
 $hours = $openingHour->openingHours(); // Spatie\OpeningHours\OpeningHours
 
 $hours->isOpenAt(new DateTime('2024-01-01 11:00')); // true / false
 $hours->nextOpen(new DateTime());
-$hours->forDay('monday');
+$hours->forDay('monday');                            // weekday ranges
+$hours->forDate(new DateTime('2024-12-25'));         // ranges for that date, exceptions applied
 ```
+
+A date exception replaces the weekday ranges for its date; an exception with no ranges makes that date closed.
 
 ## Testing
 

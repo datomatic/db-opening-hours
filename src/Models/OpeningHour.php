@@ -99,6 +99,9 @@ class OpeningHour extends Model
             );
     }
 
+    /**
+     * @return HasMany<Exception, $this>
+     */
     public function exceptions(): HasMany
     {
         return $this->hasMany(Models::exception())
@@ -220,23 +223,50 @@ class OpeningHour extends Model
         $this->unsetRelation('days');
     }
 
+    /**
+     * The full schedule as a `spatie/opening-hours` object.
+     *
+     * Both the weekly days and the date exceptions are fed in, so the returned
+     * object's date-aware methods (`forDate()`, `isOpenAt()`, `nextOpen()`, …)
+     * honour exceptions the same way the `openAt`/`openBetween` query scopes do.
+     * A date exception with no ranges maps to a closed day.
+     */
     public function openingHours(): OpeningHours
     {
-        return OpeningHours::create(
-            $this->days()
-                ->get()
-                ->mapWithKeys(static fn (Day $day): array => [
-                    $day->day->value => array_filter([
-                        'data' => $day->description,
-                        'hours' => $day->timeRanges
-                            ->map(static fn (TimeRange $timeRange): array => array_filter([
-                                'data' => $timeRange->description,
-                                'hours' => $timeRange->notation,
-                            ]))
-                            ->all(),
-                    ]),
-                ])
-                ->all(),
-        );
+        $schedule = $this->days()
+            ->get()
+            ->mapWithKeys(static fn (Day $day): array => [
+                $day->day->value => array_filter([
+                    'data' => $day->description,
+                    'hours' => $day->timeRanges
+                        ->map(static fn (TimeRange $timeRange): array => array_filter([
+                            'data' => $timeRange->description,
+                            'hours' => $timeRange->notation,
+                        ]))
+                        ->all(),
+                ]),
+            ])
+            ->all();
+
+        $exceptions = $this->exceptions()
+            ->get()
+            ->mapWithKeys(static fn (Exception $exception): array => [
+                $exception->date->format('Y-m-d') => array_filter([
+                    'data' => $exception->description,
+                    'hours' => $exception->timeRanges
+                        ->map(static fn (TimeRange $timeRange): array => array_filter([
+                            'data' => $timeRange->description,
+                            'hours' => $timeRange->notation,
+                        ]))
+                        ->all(),
+                ]),
+            ])
+            ->all();
+
+        if ($exceptions !== []) {
+            $schedule['exceptions'] = $exceptions;
+        }
+
+        return OpeningHours::create($schedule);
     }
 }
