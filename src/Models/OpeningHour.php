@@ -267,6 +267,7 @@ class OpeningHour extends Model
             $schedule['exceptions'] = $exceptions;
         }
 
+        /** @var array{monday?: array<string|array>, tuesday?: array<string|array>, wednesday?: array<string|array>, thursday?: array<string|array>, friday?: array<string|array>, saturday?: array<string|array>, sunday?: array<string|array>, exceptions?: array<array<string|array>>} $schedule */
         return OpeningHours::create($schedule);
     }
 }
