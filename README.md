@@ -1,9 +1,9 @@
 # Store and query opening hours in the database
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/datomatic/db-opening-hours.svg?style=flat-square)](https://packagist.org/packages/datomatic/db-opening-hours)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/datomatic/db-opening-hours/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/datomatic/db-opening-hours/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/datomatic/db-opening-hours/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/datomatic/db-opening-hours/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/datomatic/db-opening-hours.svg?style=flat-square)](https://packagist.org/packages/datomatic/db-opening-hours)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/datomatic/db-opening-hours.svg?style=for-the-badge)](https://packagist.org/packages/datomatic/db-opening-hours)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/datomatic/db-opening-hours/run-tests.yml?branch=main&label=tests&color=5FE8B3&style=for-the-badge)](https://github.com/datomatic/db-opening-hours/actions/workflows/run-tests.yml)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/datomatic/db-opening-hours/fix-php-code-style-issues.yml?branch=main&label=code%20style&color=5FE8B3&style=for-the-badge)](https://github.com/datomatic/db-opening-hours/actions/workflows/fix-php-code-style-issues.yml)
+[![Total Downloads](https://img.shields.io/packagist/dt/datomatic/db-opening-hours.svg?style=for-the-badge)](https://packagist.org/packages/datomatic/db-opening-hours)
 
 [`spatie/opening-hours`](https://github.com/spatie/opening-hours) is great for describing a weekly schedule in code, but it keeps everything in memory. This package **persists that schedule in your database** and attaches it to any Eloquent model, so you can store opening hours per record, edit them at runtime, and **query them straight from SQL** — "which shops are open right now?", "is this venue open between 10:00 and 12:00 next Monday?" — without loading every model into PHP.
 
